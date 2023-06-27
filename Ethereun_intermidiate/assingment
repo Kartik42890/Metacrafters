@@ -1,1 +1,29 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract ErrorHandlingContract {
+    uint256 public value;
+
+    function setValue(uint256 _newValue) public {
+        // using require() statement
+        require(_newValue > 0, "Value must be greater than zero");
+
+        // Using assert() statement 
+        // function is used for internal error checking 
+        assert(_newValue != 42);
+
+        value = _newValue;
+    }
+
+    function getValue() public view returns (uint256) {
+        return value;
+    }
+
+    function triggerError() public pure {
+        // Using revert() statement
+        //  function is used to revert the entire transaction
+        // . It is typically used to handle exceptional conditions, invalid inputs.etc.
+        revert("Error occurred");
+    }
+}
 
